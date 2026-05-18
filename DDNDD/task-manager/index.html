@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мои задачи</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Мои задачи</h1>
+        <div class="description">
+            Планируй учёбу, работу, проекты и личные дела. Перетаскивай задачи между колонками.
+        </div>
+
+        <div class="add-form">
+            <input type="text" id="taskTitle" placeholder="Название задачи">
+            <input type="text" id="taskDesc" placeholder="Описание">
+            <select id="taskStatus">
+                <option value="queue">Очередь</option>
+                <option value="progress">В работе</option>
+                <option value="review">Проверка</option>
+                <option value="done">Готово</option>
+            </select>
+            <button onclick="addTask()">+ Добавить</button>
+        </div>
+
+        <div class="filter-panel">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all" onclick="setFilter('all')">Все</button>
+                <button class="filter-btn" data-filter="queue" onclick="setFilter('queue')">Очередь</button>
+                <button class="filter-btn" data-filter="progress" onclick="setFilter('progress')">В работе</button>
+                <button class="filter-btn" data-filter="review" onclick="setFilter('review')">Проверка</button>
+                <button class="filter-btn" data-filter="done" onclick="setFilter('done')">Готово</button>
+            </div>
+            <button class="sort-btn" onclick="toggleSort()" id="sortBtn">Сортировать по имени</button>
+        </div>
+
+        <div class="board">
+            <div class="column" data-status="queue" ondrop="dropTask(event)" ondragover="allowDrop(event)" ondragleave="removeDragOver(event)">
+                <h3>Очередь <span id="queueCount">0</span></h3>
+                <div class="task-list" id="queueList"></div>
+            </div>
+
+            <div class="column" data-status="progress" ondrop="dropTask(event)" ondragover="allowDrop(event)" ondragleave="removeDragOver(event)">
+                <h3>В работе <span id="progressCount">0</span></h3>
+                <div class="task-list" id="progressList"></div>
+            </div>
+
+            <div class="column" data-status="review" ondrop="dropTask(event)" ondragover="allowDrop(event)" ondragleave="removeDragOver(event)">
+                <h3>Проверка <span id="reviewCount">0</span></h3>
+                <div class="task-list" id="reviewList"></div>
+            </div>
+
+            <div class="column" data-status="done" ondrop="dropTask(event)" ondragover="allowDrop(event)" ondragleave="removeDragOver(event)">
+                <h3>Готово <span id="doneCount">0</span></h3>
+                <div class="task-list" id="doneList"></div>
+            </div>
+        </div>
+
+        <div class="counter" id="totalCounter">Всего задач: 0</div>
+    </div>
+
+    <div id="notifyArea"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
